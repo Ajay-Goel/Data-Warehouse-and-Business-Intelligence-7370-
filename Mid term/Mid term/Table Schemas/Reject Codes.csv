@@ -1,0 +1,9 @@
+DI_Reject_SK	DI_RejectCode	DI_RejectReason	DI_RejectDescription
+1	1	Employee SK not found	Employee SK not found
+2	2	Vendor SK not found	Vendor SK not found
+3	3	Shipmethod SK not found	Shipmethod SK not found
+4	4	Products SK not found	Products SK not found
+5	5	Location SK not found	Location SK not found
+6	6	WorkOrder SK not found	WorkOrder SK not found
+7	7	ScrapReasonSK not found	ScrapReasonSK not found
+8	8	PurchaseOrderDetailID not found	PurchaseOrderDetailID not found

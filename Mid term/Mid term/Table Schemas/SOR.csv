@@ -1,0 +1,6 @@
+SOR_ID,SOR_Name,SOR_Description,SOR_Type,SOR_DBMS,SOR_DBName,SOR_DBSchema,SOR_FileType,SOR_FileName,SOR_AppName,SOR_AppModule
+1,aw_purchasing,contains purchasing related data,database,mysql,aw2017neu_purchasing,,,,,
+2,aw_production,contains product related data,database,mssql,aw2017neu_production,,,,,
+3,aw_sales,contains sales related data,database,postgresql,aw2017neu_sales,,,,,
+4,aw_hr,contains HR  and person related data,database,oracle, aw2017neu_hr & aw2017neu_person,,,,,
+5,dimDate,contains date related data,csv,csv,DimDate,,,,,

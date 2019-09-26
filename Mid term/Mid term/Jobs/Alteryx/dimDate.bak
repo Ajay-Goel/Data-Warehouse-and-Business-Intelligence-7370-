@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2018.3">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="0">F:\ANKIT\Lectures\ADBI - Richard Sherman\Mid term\Table Schemas\DimDate_Input.csv</File>
+          <FormatSpecificOptions>
+            <CodePage>28591</CodePage>
+            <Delimeter>,</Delimeter>
+            <IgnoreErrors>False</IgnoreErrors>
+            <FieldLen>254</FieldLen>
+            <AllowShareWrite>False</AllowShareWrite>
+            <HeaderRow>True</HeaderRow>
+            <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+            <ImportLine>1</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DimDate_Input.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="DateSK" size="254" source="File: F:\ANKIT\Lectures\ADBI - Richard Sherman\Mid term\Table Schemas\DimDate_Input.csv" type="V_WString" />
+            <Field name="DateAK" size="254" source="File: F:\ANKIT\Lectures\ADBI - Richard Sherman\Mid term\Table Schemas\DimDate_Input.csv" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="174" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="DateTimeFormat([DateAK],&quot;%j&quot;)&#xA;" field="DayNumberOfWeek" size="64" type="String" />
+            <FormulaField expression="DatetimeAdd([DateAK],mod(DateTimeDiff(&quot;2016-01-04&quot;,[DateAK],&quot;days&quot;),7),&quot;days&quot;)&#xA;" field="DayNameOfWeek" size="10" type="V_WString" />
+            <FormulaField expression="Substring([DayNameOfWeek],0,3)&#xA;&#xA;" field="DayNameOfweekAbr" size="3" type="V_WString" />
+            <FormulaField expression="ToNumber(trim(DateTimeFormat([DateAK],&quot;%d&quot;)))&#xA;" field="DayNumberOfMonth" size="4" type="Int32" />
+            <FormulaField expression="ToNumber(trim(DateTimeFormat([DateAK],&quot;%j&quot;)))&#xA;" field="DayNumberOfYear" size="4" type="Int32" />
+            <FormulaField expression="ToNumber(trim(DateTimeFormat([DateAK], &quot;%U&quot;)))" field="WeekNumberOfYear" size="4" type="Int32" />
+            <FormulaField expression="DateTimeFormat([DateAK], &quot;%B&quot;)&#xA;&#xA;" field="MonthName" size="40" type="V_WString" />
+            <FormulaField expression="DateTimeFormat([DateAK], &quot;%b&quot;)&#xA;&#xA;&#xA;" field="MonthNameAbbr" size="40" type="V_WString" />
+            <FormulaField expression="ToNumber(trim(DateTimeAdd([DateAK],3,'months')))&#xA;&#xA;" field="CalenderQuarter" size="1073741823" type="V_WString" />
+            <FormulaField expression="ToNumber(trim(DateTimeFormat([DateAK],&quot;%Y&quot;)))&#xA;&#xA;" field="CalendarYear" size="4" type="Int32" />
+            <FormulaField expression="'Alteryx'" field="di_tool" size="40" type="V_WString" />
+            <FormulaField expression="[Engine.WorkflowFileName]" field="di_job_name" size="40" type="V_WString" />
+            <FormulaField expression="DateTimeNow()" field="di_create_date" size="19" type="DateTime" />
+            <FormulaField expression="DateTimeNow()" field="di_modified_date" size="19" type="DateTime" />
+            <FormulaField expression="ToNumber(trim(DateTimeFormat([DateAK], &quot;%m&quot;)))" field="MonthNumberOfYear" size="1073741823" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DayNumberOfWeek = DateTimeFormat([DateAK],"%j")
+
+DayNameOfWeek = DatetimeAdd([Da...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="486" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\ProgramData\Alteryx\Engine\Engine_19244_becb8ad3f7ef4fa1b7a752143414c97e_\Engine_21964_2dc39d2915124cb8a8d00c0d43fff56f_.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="390" y="-6" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="23">odbc:DSN=mysql_dw_64;UID=info7370;PWD=__EncPwd1__|||dimdate</File>
+          <Passwords>49B64C1CFB3B9D77781C322DF</Passwords>
+          <FormatSpecificOptions>
+            <SpatialObjSize>8000</SpatialObjSize>
+            <TransactionSize>10000</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <TableStyle>Quoted</TableStyle>
+            <AppendMap>
+              <AppendMapping mode="Custom">
+                <Field Source="DateSK" Dest="DateSK" />
+                <Field Source="DateAK" Dest="FullDateAK" />
+                <Field Source="DayNumberOfWeek" Dest="DayNumberOfWeek" />
+                <Field Source="DayNameOfWeek" Dest="DayNameOfWeek" />
+                <Field Source="DayNameOfweekAbr" Dest="DayNameOfWeekAbbr" />
+                <Field Source="DayNumberOfMonth" Dest="DayNumberOfMonth" />
+                <Field Source="DayNumberOfYear" Dest="DayNumberOfYear" />
+                <Field Source="WeekNumberOfYear" Dest="WeekNumberOfYear" />
+                <Field Source="MonthName" Dest="MonthName" />
+                <Field Source="MonthNameAbbr" Dest="MonthNameAbbr" />
+                <Field Source="CalenderQuarter" Dest="CalendarQuarter" />
+                <Field Source="CalendarYear" Dest="CalendarYear" />
+                <Field Source="di_tool" Dest="DI_Tool" />
+                <Field Source="di_create_date" Dest="DI_Create_Date" />
+                <Field Source="di_modified_date" Dest="DI_Modified_Date" />
+                <Field Source="MonthNumberOfYear" Dest="MonthNumberOfYear" />
+              </AppendMapping>
+            </AppendMap>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Delete</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=mysql_dw_64
+Table=dimdate</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>dimDate</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
